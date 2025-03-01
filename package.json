@@ -1,0 +1,21 @@
+{
+  "name": "scrapeproducts",
+  "version": "1.0.0",
+  "description": "this is an assignment for exelon circuits for the hiring process",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "author": "sinchan deep",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.11.0",
+    "nodemon": "^3.1.9",
+    "puppeteer": "^24.3.0"
+  }
+}
