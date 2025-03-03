@@ -1,6 +1,8 @@
 
 const productModel = require("../models/productModel");
 
+
+
 const insertScrape = async (products) => {
     //console.log(products);
     const insert = await productModel.create(products);

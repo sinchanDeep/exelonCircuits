@@ -9,6 +9,7 @@ const App = express();
 
 connectDb();
 
+scrapeDataFromBrowser();
 setInterval(() => {
     scrapeDataFromBrowser();
 },3600000);

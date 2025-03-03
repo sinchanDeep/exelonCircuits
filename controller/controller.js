@@ -28,8 +28,7 @@ const addNewProduct = asyncHandler( async (req,res) => {
 const getProducts = asyncHandler( async (req,res) => {
     const {filter,isSort,sortMethod} = req.body;
     if(filter != ""){
-        const data = await productModel.find({filter});
-        console.log(data);
+        const data = await productModel.find({productName:filter});
         data ? res.status(200).json(data) : res.json({"message":"there was some error"});
         return;
     }
@@ -83,9 +82,9 @@ const getProducts = asyncHandler( async (req,res) => {
 //@path /api/products/deleteAproduct
 const deleteAproduct = asyncHandler( async(req,res) => {
     const {prodId} = req.body;
-    if(id!=""){
-        const remove = await productModel.remove({prodId});
-        remove ? res.status(200).json({"message":"deleted succesfully"}) : res.status(200).json("some error occured");
+    if(prodId!=""){
+        const remove = await productModel.deleteOne({prodId});
+        remove.deletedCount>0 ? res.status(200).json({"message":"deleted succesfully"}) : res.status(200).json("Product nort found");
     }else{
         res.json({"message":"please provide an id"});
     }
@@ -101,7 +100,7 @@ const updateAproduct = asyncHandler( async (req,res) => {
         return;
     }
     const update = await productModel.findOneAndUpdate({prodId},{$set : {price: updatedPrice}})
-    update ? res.json("successfully updated") : res.json("some error occured");
+    update ? res.json("successfully updated") : res.json("No record with prodId : "+prodId);
 });
 
 module.exports = { addNewProduct , getProducts , deleteAproduct,updateAproduct }
